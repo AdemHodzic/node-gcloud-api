@@ -1,3 +1,5 @@
 node_modules/
 src/static/*
-config.json
+app.yaml
+pokedex.sql
+.env

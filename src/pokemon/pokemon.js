@@ -1,4 +1,4 @@
-const database = require('../database/database');
+const database = require('../core/database');
 const Sequelize = database.Sequelize;
 
 const Pokemon = database.define('pokemon', {

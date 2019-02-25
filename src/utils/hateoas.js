@@ -25,8 +25,8 @@ const hateoasHelper = (req,res) => {
   }
 
   res.json(pokemonSchema, [
-    { rel: "self", method: "GET", href: 'http://127.0.0.1:3000/pokemons/1' },
-    { rel: "all", method: "GET", title: 'Get All Pokemons', href: 'http://127.0.0.1:3000/pokemons' }
+    { rel: "self", method: "GET", href: '/pokemons/1' },
+    { rel: "all", method: "GET", title: 'Get All Pokemons', href: '/pokemons' }
   ]);
 }
 
