@@ -22,7 +22,7 @@ const register = (req, res) => {
   const password = bcrypt.hashSync(req.body.password, 5)
 
   userRepo.createUser({ name, password })
-    .then(data => res.json(data))
+    .then(data => res.json({ auth: true, user: data.name }))
     .catch(err => res.status(500).json({ error: err.message }))
 }
 
