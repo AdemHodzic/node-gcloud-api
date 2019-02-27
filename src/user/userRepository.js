@@ -5,7 +5,7 @@ const getUserById = (id) => {
 }
 
 const getUserByName = (name) => {
-  return User.findone({
+  return User.findOne({
     where: {
       name: name
     }

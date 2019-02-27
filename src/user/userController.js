@@ -17,13 +17,23 @@ const login = (req, res) => {
     .catch(_ => res.status(404).json({ error: 'Invalid username.' }))
 }
 
-const register = (req, res) => {
+const register = async (req, res) => {
   const name = req.body.name
+
+  const user = await userRepo.getUserByName(name)
+  if (user !== null) {
+    res.status(409).json({ error: 'User already exists' })
+    return
+  }
+
   const password = bcrypt.hashSync(req.body.password, 5)
 
-  userRepo.createUser({ name, password })
-    .then(data => res.json({ auth: true, user: data.name }))
-    .catch(err => res.status(500).json({ error: err.message }))
+  try {
+    const data = await userRepo.createUser({ name, password })
+    res.json({ auth: true, user: data.name })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
 }
 
 const logout = (req, res) => {
